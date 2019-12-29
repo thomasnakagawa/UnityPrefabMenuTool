@@ -8,10 +8,10 @@ namespace floatoat.PrefabMenuTool
     public static class MenuScriptGenerator
     {
         private static readonly string MenuItemCodeTemplate =
-            "        [MenuItem(\"{0}\", false, {1})] protected static void InstantiateMethod{2}() => PrefabMenuUtils.InstantiateInScene(\"{3}\");\n";
+"        [MenuItem(\"{0}\", false, {1})] protected static void InstantiateMethod{2}() => PrefabMenuUtils.InstantiateInScene(\"{3}\");\n";
 
         private static readonly string MenuScriptCodeTemplate =
-    @"using UnityEditor;
+@"using UnityEditor;
 
 /// <summary>
 /// Generated script created by Prefab Menu Builder tool in MenuScriptGenerator.cs
@@ -80,28 +80,33 @@ namespace floatoat.PrefabMenuTool.Menus
 
         private static void ValidateItems(List<PrefabMenuItem> items)
         {
-            if (items.Count < 1)
+            if (items == null || items.Count < 1)
             {
                 throw new System.ArgumentException("Must have at least one item to generate menu script");
             }
 
             for (int i = 0; i < items.Count; i++)
             {
-                if (string.IsNullOrEmpty(items[i].MenuPath))
-                {
-                    throw new System.ArgumentException("Item " + i + " needs a valid menu path");
-                }
+                ValidateItem(items[i], i);
+            }
+        }
 
-                if (items[i].PrefabAsset == null)
-                {
-                    throw new System.ArgumentException("Item " + i + " cannot have a null prefab");
-                }
+        private static void ValidateItem(PrefabMenuItem item, int itemIndex)
+        {
+            if (string.IsNullOrEmpty(item.MenuPath))
+            {
+                throw new System.ArgumentException("Item " + itemIndex + " needs a valid menu path");
+            }
 
-                string assetPath = AssetDatabase.GetAssetPath(items[i].PrefabAsset);
-                if (string.IsNullOrEmpty(assetPath))
-                {
-                    throw new System.ArgumentException("Item " + i + "'s asset has no path");
-                }
+            if (item.PrefabAsset == null)
+            {
+                throw new System.ArgumentException("Item " + itemIndex + " cannot have a null prefab");
+            }
+
+            string assetPath = AssetDatabase.GetAssetPath(item.PrefabAsset);
+            if (string.IsNullOrEmpty(assetPath))
+            {
+                throw new System.ArgumentException("Item " + itemIndex + "'s asset has no path");
             }
         }
 

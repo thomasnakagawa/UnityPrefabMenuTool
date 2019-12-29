@@ -4,7 +4,7 @@ using UnityEngine;
 namespace floatoat.PrefabMenuTool
 {
     /// <summary>
-    /// Class of methods for generated menu scripts to call
+    /// Class with methods for generated menu scripts to call
     /// </summary>
     public class PrefabMenuUtils
     {
