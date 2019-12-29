@@ -66,7 +66,7 @@ namespace float_oat.PrefabMenuTool.GeneratedMenus
 
         private static string ScriptClassName(string fileName)
         {
-            return "_" + (new Regex("[^a-zA-Z0-9 -]")).Replace(fileName, "");
+            return "_" + (new Regex("[^a-zA-Z0-9_]")).Replace(fileName, "");
         }
 
         private static string FileNameWithExtension(string fileName)
