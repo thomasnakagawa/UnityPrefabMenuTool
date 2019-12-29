@@ -6,12 +6,15 @@ namespace float_oat.PrefabMenuTool
     /// <summary>
     /// Class with methods for generated menu scripts to call
     /// </summary>
-    public class PrefabMenuUtils
+    public static class PrefabMenuUtils
     {
         public static void InstantiateInScene(string prefabPath)
         {
-
-            //Undo.
+            // validate argument
+            // check that prefabpath leads to a valid prefab
+            // instantiate the prefab at the focus position
+            // parent the instantiated prefab to the selected object if there is one
+            // register Undo
         }
     }
 }

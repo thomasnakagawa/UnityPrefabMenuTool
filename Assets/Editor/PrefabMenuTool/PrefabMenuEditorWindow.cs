@@ -11,7 +11,7 @@ namespace float_oat.PrefabMenuTool
     public class PrefabMenuEditorWindow : EditorWindow
     {
         private static List<PrefabMenuItem> Items;
-        private static Vector2 scrollPosition = Vector2.zero;
+        private static Vector2 ScrollPosition = Vector2.zero;
         private static string FileName = "PrefabMenu.cs";
 
         static PrefabMenuEditorWindow()
@@ -24,7 +24,7 @@ namespace float_oat.PrefabMenuTool
 
         private void OnGUI()
         {
-            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+            ScrollPosition = GUILayout.BeginScrollView(ScrollPosition);
 
             var listCopy = Items.ToList(); // use a copy of the list so the original can be modified while the copy is being rendered
             for (int i = 0; i < Items.Count; i++)
