@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -95,7 +96,15 @@ public class PrefabMenuEditorWindow : EditorWindow
         GUI.enabled = listCopy.Count > 0 && FileName.Length > 0;
         if (GUILayout.Button("Generate menu script"))
         {
-            MenuScriptGenerator.GenerateMenuScript(Items, FileName);
+            try
+            {
+                MenuScriptGenerator.GenerateMenuScript(Items, FileName);
+            }
+            catch (Exception e)
+            {
+                EditorUtility.DisplayDialog("Could not generate menu script", "Error when generating menu script: " + e.Message, "Ok");
+                throw e;
+            }
         }
 
         GUI.enabled = true;
