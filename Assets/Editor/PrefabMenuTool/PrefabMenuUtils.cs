@@ -9,6 +9,11 @@ namespace float_oat.PrefabMenuTool
     /// </summary>
     public static class PrefabMenuUtils
     {
+        /// <summary>
+        /// Instantiates the prefab at the passed in path into the scene.
+        /// Parents and selects the new GameObject, mimicking the default behavior of using the GameObject menu
+        /// </summary>
+        /// <param name="prefabPath">Path to the prefab to instantiate</param>
         public static void InstantiateInScene(string prefabPath)
         {
             try
@@ -37,6 +42,12 @@ namespace float_oat.PrefabMenuTool
 
                 // select the new object
                 Selection.activeGameObject = prefabInstance;
+
+                // position the new object
+                if (SceneView.lastActiveSceneView != null)
+                {
+                    SceneView.lastActiveSceneView.MoveToView(prefabInstance.transform);
+                }
 
                 // register Undo
                 Undo.RegisterCreatedObjectUndo(prefabInstance, "Created " + prefabInstance.name);

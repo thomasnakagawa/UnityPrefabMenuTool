@@ -19,7 +19,7 @@ namespace float_oat.PrefabMenuTool
         private Vector2 ScrollPosition = Vector2.zero;
 
         [MenuItem("Tools/Prefab Menu Builder")]
-        protected static void InitWindow() => GetWindow(typeof(PrefabMenuEditorWindow), false, "Prefab menu builder").Show();
+        protected static void InitWindow() => GetWindow(typeof(PrefabMenuEditorWindow), false, "Prefab Menu Builder").Show();
 
         private void OnGUI()
         {
