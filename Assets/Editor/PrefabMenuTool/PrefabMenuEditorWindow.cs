@@ -10,14 +10,12 @@ namespace float_oat.PrefabMenuTool
 {
     public class PrefabMenuEditorWindow : EditorWindow
     {
-        private static List<PrefabMenuItem> Items;
-        private static Vector2 ScrollPosition = Vector2.zero;
-        private static string FileName = "PrefabMenu.cs";
+        private static readonly string DATA_PREF_KEY = "PrefabMenuToolData";
 
-        static PrefabMenuEditorWindow()
-        {
-            Items = new List<PrefabMenuItem>();
-        }
+        [SerializeField] private List<PrefabMenuItem> Items = new List<PrefabMenuItem>();
+        [SerializeField] private string FileName = "PrefabMenu.cs";
+
+        private Vector2 ScrollPosition = Vector2.zero;
 
         [MenuItem("Tools/Prefab Menu Builder")]
         protected static void InitWindow() => GetWindow(typeof(PrefabMenuEditorWindow), false, "Prefab menu builder").Show();
@@ -104,6 +102,20 @@ namespace float_oat.PrefabMenuTool
 
             GUI.enabled = true;
             GUILayout.EndScrollView();
+        }
+
+        private void OnEnable()
+        {
+            // Restore data if it has been saved
+            var data = EditorPrefs.GetString(DATA_PREF_KEY, JsonUtility.ToJson(this, false));
+            JsonUtility.FromJsonOverwrite(data, this);
+        }
+
+        private void OnDisable()
+        {
+            // Store data to persist the UI content later
+            var data = JsonUtility.ToJson(this, false);
+            EditorPrefs.SetString(DATA_PREF_KEY, data);
         }
     }
 }

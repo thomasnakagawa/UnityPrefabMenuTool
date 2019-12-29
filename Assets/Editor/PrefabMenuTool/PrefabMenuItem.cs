@@ -2,10 +2,17 @@
 
 namespace float_oat.PrefabMenuTool
 {
+    [System.Serializable]
     public class PrefabMenuItem
     {
-        public GameObject PrefabAsset { get; set; }
-        public int Priority { get; set; } = 10;
-        public string MenuPath { get; set; } = "GameObject/my prefab";
+        public GameObject PrefabAsset;
+        public int Priority;
+        public string MenuPath;
+
+        public PrefabMenuItem()
+        {
+            Priority = 10;
+            MenuPath = "GameObject/my prefab";
+        }
     }
 }
