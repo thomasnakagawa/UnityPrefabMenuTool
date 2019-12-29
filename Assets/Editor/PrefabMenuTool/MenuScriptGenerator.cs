@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using UnityEditor;
 
-namespace floatoat.PrefabMenuTool
+namespace float_oat.PrefabMenuTool
 {
     public static class MenuScriptGenerator
     {
@@ -16,9 +16,9 @@ namespace floatoat.PrefabMenuTool
 /// <summary>
 /// Generated script created by Prefab Menu Builder tool in MenuScriptGenerator.cs
 /// </summary>
-namespace floatoat.PrefabMenuTool.Menus
+namespace float_oat.PrefabMenuTool.GeneratedMenus
 {{
-    public sealed class {0} 
+    public class {0} 
     {{
 {1}    }}
 }}
@@ -98,6 +98,11 @@ namespace floatoat.PrefabMenuTool.Menus
                 throw new System.ArgumentException("Item " + itemIndex + " needs a valid menu path");
             }
 
+            if (item.MenuPath.Split('/').Length < 2)
+            {
+                throw new System.ArgumentException("Item " + itemIndex + "'s menu path cannot be top level. Use the / character to put it in a nested menu. ex: GameObject/Items/Coin");
+            }
+
             if (item.PrefabAsset == null)
             {
                 throw new System.ArgumentException("Item " + itemIndex + " cannot have a null prefab");
@@ -115,6 +120,10 @@ namespace floatoat.PrefabMenuTool.Menus
             if (string.IsNullOrEmpty(fileName))
             {
                 throw new System.ArgumentException("Filename must be valid");
+            }
+            if (ScriptClassName(fileName).Length < 2)
+            {
+                throw new System.ArgumentException("Filename must have some alphanumeric characters");
             }
         }
     }

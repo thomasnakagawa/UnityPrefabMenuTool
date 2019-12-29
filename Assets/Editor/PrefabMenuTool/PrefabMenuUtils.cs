@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace floatoat.PrefabMenuTool
+namespace float_oat.PrefabMenuTool
 {
     /// <summary>
     /// Class with methods for generated menu scripts to call

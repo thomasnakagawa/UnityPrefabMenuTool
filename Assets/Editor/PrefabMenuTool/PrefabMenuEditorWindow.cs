@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace floatoat.PrefabMenuTool
+namespace float_oat.PrefabMenuTool
 {
     public class PrefabMenuEditorWindow : EditorWindow
     {

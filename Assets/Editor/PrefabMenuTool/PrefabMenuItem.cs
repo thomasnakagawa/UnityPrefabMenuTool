@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace floatoat.PrefabMenuTool
+namespace float_oat.PrefabMenuTool
 {
     public class PrefabMenuItem
     {
