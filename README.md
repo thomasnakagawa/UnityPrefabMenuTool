@@ -15,7 +15,7 @@ Add your own prefabs to the GameObject menu
 <img src="Screenshots/hierarchy.png" width="50%">
 
 ## Installation
-- Download the package
+- Download the latest [release](https://github.com/thomasnakagawa/UnityPrefabMenuGenerator/releases) of the package
 - Import the package into your Unity project with Assets -> Import Package -> Custom Package
 
 ## Usage
