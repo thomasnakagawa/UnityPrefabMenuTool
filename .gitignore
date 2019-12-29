@@ -53,3 +53,7 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Files specific to prefab menu project
+Assets/Editor/PrefabMenuTool/BuiltMenus
+
