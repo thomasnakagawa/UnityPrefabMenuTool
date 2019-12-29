@@ -5,6 +5,9 @@ using UnityEditor;
 
 namespace float_oat.PrefabMenuTool
 {
+    /// <summary>
+    /// Generates the MenuItem code files
+    /// </summary>
     public static class MenuScriptGenerator
     {
         private static readonly string MenuItemCodeTemplate =
@@ -23,7 +26,11 @@ namespace float_oat.PrefabMenuTool.GeneratedMenus
 {1}    }}
 }}
 ";
-
+        /// <summary>
+        /// Converts a List of PrefabMenuItems into MenuItems C# code and saves it to a file
+        /// </summary>
+        /// <param name="items">The items to convert to code</param>
+        /// <param name="fileName">The name to save the file as</param>
         public static void GenerateMenuScript(List<PrefabMenuItem> items, string fileName)
         {
             ValidateItems(items);
@@ -56,12 +63,27 @@ namespace float_oat.PrefabMenuTool.GeneratedMenus
 
             // Write code into file
             string FilePath = "Assets/Editor/PrefabMenuTool/BuiltMenus/" + FileNameWithExtension(fileName);
-            (new FileInfo(FilePath)).Directory.Create();
-            File.WriteAllText(FilePath, FileContent);
-            EditorUtility.DisplayDialog("Menu generated", "Menu script file was generated and was saved to " + FilePath, "Ok");
+            if (File.Exists(FilePath))
+            {
+                if (EditorUtility.DisplayDialog("Overwrite file?", "File " + FilePath + " already exists. Overwrite?", "Yes", "Cancel"))
+                {
+                    SaveGeneratedData(FileContent, FilePath);
+                }
+            }
+            else
+            {
+                SaveGeneratedData(FileContent, FilePath);
+            }
+        }
+
+        private static void SaveGeneratedData(string fileContent, string filePath)
+        {
+            (new FileInfo(filePath)).Directory.Create();
+            File.WriteAllText(filePath, fileContent);
+            EditorUtility.DisplayDialog("Menu generated ✅", "Menu script file was generated and was saved to " + filePath, "Ok");
 
             // Import the new file
-            AssetDatabase.ImportAsset(FilePath);
+            AssetDatabase.ImportAsset(filePath);
         }
 
         private static string ScriptClassName(string fileName)

@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
 namespace float_oat.PrefabMenuTool
 {
+    /// <summary>
+    /// Custom editor window for configuring the prefab menu tool
+    /// </summary>
     public class PrefabMenuEditorWindow : EditorWindow
     {
         private static readonly string DATA_PREF_KEY = "PrefabMenuToolData";

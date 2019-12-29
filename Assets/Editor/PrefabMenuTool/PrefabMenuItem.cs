@@ -2,6 +2,9 @@
 
 namespace float_oat.PrefabMenuTool
 {
+    /// <summary>
+    /// Represents one configuration of a menu item
+    /// </summary>
     [System.Serializable]
     public class PrefabMenuItem
     {
